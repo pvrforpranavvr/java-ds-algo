@@ -1,7 +1,6 @@
 package edu.ds_algo.ds.stack;
 
 import java.util.EmptyStackException;
-import java.util.Stack;
 
 /**
  * Stack data structure maintains LIFO (Last In First Out) or FILO (First In Last Out)
@@ -15,7 +14,7 @@ public class StackUsingSinglyLinkedList<E> {
     /**
      * Pushes an item into the top of the stack.
      */
-    void push(E item) {
+    public void push(E item) {
 
         Node<E> newNode = new Node<>(item);
 
@@ -24,11 +23,12 @@ public class StackUsingSinglyLinkedList<E> {
     }
 
     /**
+     * Add item to the head end of the linked list
      * Pop out last element and return the value. Once stack is empty throws exception
      *
      * @return
      */
-    E pop() {
+    public E pop() {
 
         if (headNode == null) {
 
@@ -43,7 +43,7 @@ public class StackUsingSinglyLinkedList<E> {
     /**
      * Always return last inserted element.
      */
-    E peek() {
+    public E peek() {
 
         return headNode.item;
     }
@@ -58,7 +58,7 @@ public class StackUsingSinglyLinkedList<E> {
         private final E item;
         private Node<E> nextNode;
 
-        public Node(E item) {
+        private Node(E item) {
             this.item = item;
             this.nextNode = null;
         }
