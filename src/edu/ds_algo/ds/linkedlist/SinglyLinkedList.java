@@ -38,14 +38,14 @@ public class SinglyLinkedList<E> {
         E itemAtIndex = null;
         Node<E> nodeAtIndex = headNode;
 
-        for (int currentPos = 0; currentPos <= index; currentPos++) {
+        for (int currentIndex = 0; currentIndex <= index; currentIndex++) {
 
             if (nodeAtIndex == null) {
 
                 throw new ArrayIndexOutOfBoundsException();
             }
 
-            if (currentPos == index) {
+            if (currentIndex == index) {
 
                 itemAtIndex = nodeAtIndex.item;
                 break;
@@ -54,6 +54,49 @@ public class SinglyLinkedList<E> {
         }
 
         return itemAtIndex;
+    }
+
+    /**
+     * Remove node at the given index.
+     *
+     * @param index
+     */
+    void remove(int index) {
+
+        Node<E> currentNode = headNode;
+        Node<E> previousNode = headNode;
+
+        for (int currentIndex = 0; currentIndex <= index; currentIndex++) {
+
+            if (currentNode == null) {
+
+                throw new ArrayIndexOutOfBoundsException();
+            }
+
+//            If only one node exists.
+            if (index == 0 && headNode.nextNode == null) {
+                headNode = null;
+                break;
+            }
+
+            if (index == currentIndex) {
+
+                if (currentIndex == 0) {
+
+                    currentNode = currentNode.nextNode;
+                    headNode = currentNode;
+                    break;
+                } else {
+
+                    previousNode.nextNode = currentNode.nextNode;
+                }
+
+            }
+
+            previousNode = currentNode;
+            currentNode = currentNode.nextNode;
+
+        }
     }
 
     private static class Node<E> {
@@ -76,5 +119,8 @@ public class SinglyLinkedList<E> {
         linkedList.add(3);
 
         System.out.println(linkedList.get(2));
+
+        linkedList.remove(2);
+
     }
 }
