@@ -9,7 +9,8 @@ import java.util.EmptyStackException;
  */
 public class StackUsingSinglyLinkedList<E> {
 
-    private Node<E> headNode;
+    // headNode or topNode of a stack
+    private Node<E> topNode;
 
     /**
      * Pushes an item into the top of the stack.
@@ -18,8 +19,8 @@ public class StackUsingSinglyLinkedList<E> {
 
         Node<E> newNode = new Node<>(item);
 
-        newNode.nextNode = headNode;
-        headNode = newNode;
+        newNode.nextNode = topNode;
+        topNode = newNode;
     }
 
     /**
@@ -30,12 +31,11 @@ public class StackUsingSinglyLinkedList<E> {
      */
     public E pop() {
 
-        if (headNode == null) {
-
+        if (topNode == null) {
             throw new EmptyStackException();
         }
-        E item = headNode.item;
-        headNode = headNode.nextNode;
+        E item = topNode.item;
+        topNode = topNode.nextNode;
 
         return item;
     }
@@ -45,7 +45,7 @@ public class StackUsingSinglyLinkedList<E> {
      */
     public E peek() {
 
-        return headNode.item;
+        return topNode.item;
     }
 
     /**
